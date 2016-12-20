@@ -22,6 +22,22 @@
           <input type="text" class="form-control" formControlName="confirmPassword">
       </div>
 
+    <div formArrayName="contactNumbers">
+      <div *ngFor="let number of userForm.get('contactNumbers').controls; let i = index">
+        <div class="row" formGroupName="{{i}}">
+          <input type="text" formControlName="number" class="form-control col-md-4">
+          <select formControlName="type" class="form-control  col-md-4">
+            <option value="">Select type</option>
+            <option>RS</option>
+            <option>CS</option>
+            <option>SA</option>
+          </select>
+          <button class="btn btn-danger" (click)="removePhoneNumber(i)">Remove</button>
+        </div>
+      </div>
+    </div>
+    <button (click)="addContactNumber()" class="btn btn-default">Add more</button>
+
       <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">Save</button>
   </form>
 </div>
